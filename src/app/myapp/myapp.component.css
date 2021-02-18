@@ -11,7 +11,14 @@ td{
     cursor: pointer;
 }
 #test{
+text-align: center;
+font-weight: bold;
+}
+#title{
     text-transform: uppercase;
+}
+#body{
+    font-size:small;
 }
 tr{
     cursor: pointer;

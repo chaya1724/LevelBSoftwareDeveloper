@@ -58,26 +58,32 @@ export class MyappComponent implements OnInit {
     //get the all posts for specific user
   userClick(postId: number) {
     this.postsListShow=[];
-    this.getAllPosts();
-    for (let p of this.postsList) {
-      if (p.userId == postId) {
-        this.postsListShow.push(p);
-      }
-      else {
-      }
-    }
+    this.userService.getAllPosts().subscribe(
+      ListFromDB => {
+        this.postsList = JSON.parse(ListFromDB);
+        for (let p of this.postsList) {
+          if (p.userId == postId) {
+            this.postsListShow.push(p);
+          }
+          else {
+          }
+        }
+      });
   }
    //get the all comments for specific post
   postClick(postId:number){
     this.commentsListShow=[];
-    this.getAllComments();
-    for (let c of this.commentsList) {
-      if (c.postId == postId) {
-        this.commentsListShow.push(c);
-      }
-      else {
-      }
-    } 
+    this.userService.getAllComments().subscribe(
+      ListFromDB => {
+        this.commentsList = JSON.parse(ListFromDB);
+        for (let c of this.commentsList) {
+          if (c.postId == postId) {
+            this.commentsListShow.push(c);
+          }
+          else {
+          }
+        } 
+      });    
    }
 refreshComments(){
  // Activate after 30 secends.

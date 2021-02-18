@@ -4,7 +4,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-3">
             <div>
                 <h2>Workers</h2>
                 <ol style="list-style-type:none;">
@@ -17,8 +17,45 @@
                 </ol>
             </div>
         </div>
-        <div class="col-lg-6">
-            <table class="table table-sm">
+        <div class="col-6">
+            <p-table [value]="postsListShow">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Post id</th>
+                        <th>Post title</th>
+                        <th>Post body</th>          
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-post>
+                    <tr>
+                        <td id=test>{{post.id}}</td>
+                        <td id=title>{{post.title}}</td>
+                        <td id=body>{{post.body}}</td>          
+                    </tr>
+                </ng-template>
+              </p-table>
+        </div>
+        <div class="col-3">
+            <ol style="list-style-type:none;">
+                <li *ngFor="let comment of commentsListShow">
+                    <div class="comment">
+                        <h6 style="text-align: center;font-weight: bold;">Comment</h6>
+                        <b> Body:</b> {{comment.body}}
+                        <br />
+                  -----------------------------------------------------
+                 <br />
+                 <a href='https:// + {{comment.email}}'> <b>name:</b>  {{comment.name}}</a>                        
+                        <!-- <a [routerLink]="['https://{{comment.email}}']">
+                            <b>nane:</b>  {{comment.name}}
+                        </a> -->
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+  <!-- <table class="table table-sm">
                 <thead>
                     <tr>
                         <th>P.id</th>
@@ -33,39 +70,4 @@
                         <td>{{post.body}}</td>
                     </tr>
                 </tbody>
-            </table>
-        </div>
-        <div class="col-lg-3">
-            <ol style="list-style-type:none;">
-                <li *ngFor="let comment of commentsListShow">
-                    <div class="comment">
-                        <h6 style="text-align: center">Comment</h6>
-                        <b> Body:</b> {{comment.body}}
-                        <br />
-                  -----------------------------------------------------
-                 <br />
-                 <a href='https:// + {{comment.email}}'> <b>name:</b>  {{comment.name}}</a>                        
-                        <!-- <a [routerLink]="['https://{{comment.email}}']">
-                            <b>nane:</b>  {{comment.name}}
-                        </a> -->
-                    </div>
-                </li>
-            </ol>
-        </div>
-    </div>
-<!-- </div><p-table [value]="postsListShow">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Body</th>          
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-post>
-        <tr>
-            <td>{{post.id}}</td>
-            <td>{{post.title}}</td>
-            <td>{{post.body}}</td>          
-        </tr>
-    </ng-template>
-  </p-table> -->
+            </table> -->
