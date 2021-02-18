@@ -27,7 +27,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-post>
-                    <tr>
+                    <tr *ngFor="let post of postsListShow" (click)="postClick(post.id)">
                         <td id=test>{{post.id}}</td>
                         <td id=title>{{post.title}}</td>
                         <td id=body>{{post.body}}</td>          
