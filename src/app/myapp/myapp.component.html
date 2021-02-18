@@ -44,7 +44,7 @@
                         <br />
                   -----------------------------------------------------
                  <br />
-                 <a href='https:// + {{comment.email}}'> <b>name:</b>{{comment.name}}</a>                        
+                 <a href='https:// + {{comment.email}}'> <b>name:</b>  {{comment.name}}</a>                        
                         <!-- <a [routerLink]="['https://{{comment.email}}']">
                             <b>nane:</b>  {{comment.name}}
                         </a> -->
@@ -53,4 +53,19 @@
             </ol>
         </div>
     </div>
-</div>
+<!-- </div><p-table [value]="postsListShow">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Body</th>          
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-post>
+        <tr>
+            <td>{{post.id}}</td>
+            <td>{{post.title}}</td>
+            <td>{{post.body}}</td>          
+        </tr>
+    </ng-template>
+  </p-table> -->

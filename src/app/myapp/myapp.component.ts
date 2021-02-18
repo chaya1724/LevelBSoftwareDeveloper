@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { post, UserService } from '../user.service';
 import { MatTableModule } from '@angular/material/table';
 
 @Component({
@@ -11,72 +11,79 @@ export class MyappComponent implements OnInit {
   usersList: any[]=[];
   postsList: any[]=[];
   commentsList: any[]=[];
-  postsListShow: any[]=[];
+  postsListShow: post[]=[];
   commentsListShow: any[]=[];
 
   constructor(public userService: UserService) { }
+  ngOnInit(): void {
+    this.getAllUsers();
+    this.getfirstPosts();
+    this.getfirstComment();
+  }
+  // get all Users from API
   getAllUsers() {
     this.userService.getAllUsers().subscribe(
       ListFromDB => {
-        debugger
         this.usersList = JSON.parse(ListFromDB);
       });
   }
+  //get all Posts from API
   getAllPosts() {
     this.userService.getAllPosts().subscribe(
       ListFromDB => {
         this.postsList = JSON.parse(ListFromDB);
       });
   }
+  //get all Comments from API
   getAllComments() {
-    // Activate after 30 secends.
-    setTimeout(() => {
-      window.location.reload();
-    }, 0.5); 
     this.userService.getAllComments().subscribe(
       ListFromDB => {
         this.commentsList = JSON.parse(ListFromDB);
       });
   }
+  //get first Posts
   getfirstPosts():any {
     this.userService.getfirstPosts().subscribe(
       ListFromDB => {
         this.postsListShow = JSON.parse(ListFromDB);
       });
   }
+  //get first Comment
   getfirstComment() {
     this.userService.getfirstComments().subscribe(
       ListFromDB => {
         this.commentsListShow = JSON.parse(ListFromDB);
-      });  }
-  userClick(postId: number) {debugger
+      });  
+    }
+    //get the all posts for specific user
+  userClick(postId: number) {
     this.postsListShow=[];
     this.getAllPosts();
     for (let p of this.postsList) {
       if (p.userId == postId) {
         this.postsListShow.push(p);
-        console.log(this.postsList)
       }
       else {
       }
     }
   }
-  postClick(commentId:number){
+   //get the all comments for specific post
+  postClick(postId:number){
     this.commentsListShow=[];
     this.getAllComments();
     for (let c of this.commentsList) {
-      if (c.postId == commentId) {
-        this.postsListShow.push(c);
-        console.log(this.postsList)
+      if (c.postId == postId) {
+        this.commentsListShow.push(c);
       }
       else {
       }
-    }  }
-
-  ngOnInit(): void {
-    this.getAllUsers();
-    this.getfirstPosts();
-    this.getfirstComment();
-  }
-
+    } 
+   }
+refreshComments(){
+ // Activate after 30 secends.
+    setTimeout(() => {
+      window.location.reload();
+    }, 0.5); 
+    this.userService.getAllComments();
+}
 }
